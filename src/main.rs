@@ -6,6 +6,7 @@ struct Person {
     name: String,
     age: i32,
     direction: String,
+    surname: Option<String>,
 }
 
 #[tokio::main]
@@ -22,6 +23,7 @@ async fn main() -> Result<(), sqlx::Error> {
         name: "John".to_string(),
         age: 30,
         direction: "USA".to_string(),
+        surname: Some("Doe".to_string()),
     };
 
     sqlx::query("INSERT INTO people SELECT * FROM jsonb_populate_record(NULL::people, $1)")
